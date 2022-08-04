@@ -26,14 +26,14 @@ const SignUp = () => {
       />
       <input
         className="inputBox"
-        type="text"
+        type="email"
         placeholder="Enter Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
         className="inputBox"
-        type="text"
+        type="password"
         placeholder="Enter Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
