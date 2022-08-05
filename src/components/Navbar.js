@@ -25,6 +25,9 @@ const Navbar = () => {
           <Link to="/profile">Profile</Link>
         </li>
         <li>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
           {auth ? (
             <Link to="/signup" onClick={logOut}>
               Logout
