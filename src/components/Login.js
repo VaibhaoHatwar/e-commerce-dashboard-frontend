@@ -1,13 +1,42 @@
-import { useState } from "react"
+import userEvent from "@testing-library/user-event"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleLogin = (e) => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const auth = localStorage.getItem("user")
+    if (auth) {
+      navigate("/")
+    }
+  }, [])
+
+  const handleLogin = async (e) => {
     e.preventDefault()
 
-    console.log({ email, password })
+    let result = await fetch("http://localhost:5000/login", {
+      method: "post",
+      body: JSON.stringify({ email, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+    result = await result.json()
+    console.log(result)
+
+    if (result.name) {
+      localStorage.setItem("user", JSON.stringify(result))
+      setEmail("")
+      setPassword("")
+      navigate("/")
+    } else {
+      alert("Please, enter corect details")
+    }
   }
 
   return (
@@ -19,6 +48,7 @@ const Login = () => {
         placeholder="Enter email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        required
       />
       <input
         className="inputBox"
@@ -26,6 +56,7 @@ const Login = () => {
         placeholder="Enter password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        required
       />
 
       <button className="button" type="submit">
