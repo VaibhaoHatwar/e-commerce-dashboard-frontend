@@ -23,9 +23,13 @@
   background-color: skyblue;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo {
+  width: 45px;
+  height: 45px;
+  float: left;
+  border-radius: 100%;
+  margin-top: 3px;
+  margin-left: 20px;
 }
 
 .register {
@@ -34,7 +38,7 @@
 
 .login {
   margin-left: 30%;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .inputBox {
@@ -52,6 +56,10 @@
   background-color: skyblue;
   border: 1px solid;
   cursor: pointer;
+}
+
+.nav-right {
+  text-align: right;
 }
 
 @media (prefers-reduced-motion: no-preference) {
