@@ -1,4 +1,3 @@
-import userEvent from "@testing-library/user-event"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -13,6 +12,8 @@ const Login = () => {
     if (auth) {
       navigate("/")
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleLogin = async (e) => {
@@ -27,10 +28,10 @@ const Login = () => {
     })
 
     result = await result.json()
-    console.log(result)
 
-    if (result.name) {
-      localStorage.setItem("user", JSON.stringify(result))
+    if (result.auth) {
+      localStorage.setItem("user", JSON.stringify(result.user))
+      localStorage.setItem("token", JSON.stringify(result.auth))
       setEmail("")
       setPassword("")
       navigate("/")

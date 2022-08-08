@@ -14,7 +14,9 @@ const SignUp = () => {
     if (auth) {
       navigate("/")
     }
-  })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const collectData = async (e) => {
     e.preventDefault()
@@ -28,8 +30,8 @@ const SignUp = () => {
     })
 
     result = await result.json() // <-- to convert readable stream to json
-    console.log(result)
-    localStorage.setItem("user", JSON.stringify(result))
+    localStorage.setItem("user", JSON.stringify(result.result))
+    localStorage.setItem("token", JSON.stringify(result.auth))
 
     setName("")
     setEmail("")
